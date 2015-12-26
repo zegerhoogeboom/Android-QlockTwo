@@ -12,9 +12,9 @@ import android.widget.TextView;
  */
 public class TextAdapter extends BaseAdapter {
     private Context context;
-    private Qlock.EnglishRenderer renderer;
+    private Renderer renderer;
 
-    public TextAdapter(Context c, Qlock.EnglishRenderer renderer) {
+    public TextAdapter(Context c, Renderer renderer) {
         context = c;
         this.renderer = renderer;
     }
