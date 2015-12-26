@@ -1,22 +1,20 @@
 package org.zegerhoogeboom;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import org.joda.time.LocalDateTime;
 
 /**
  * @author Zeger Hoogeboom
  */
 public class TextAdapter extends BaseAdapter {
     private Context context;
-    private Qlock.Renderer renderer;
+    private Qlock.EnglishRenderer renderer;
 
-    public TextAdapter(Context c, Qlock.Renderer renderer) {
+    public TextAdapter(Context c, Qlock.EnglishRenderer renderer) {
         context = c;
         this.renderer = renderer;
     }

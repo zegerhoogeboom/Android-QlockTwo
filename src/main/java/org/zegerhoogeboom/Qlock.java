@@ -19,7 +19,7 @@ public class Qlock extends Activity {
         setContentView(R.layout.main);
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new TextAdapter(this, new Renderer()));
+        gridview.setAdapter(new TextAdapter(this, new EnglishRenderer()));
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
@@ -28,7 +28,7 @@ public class Qlock extends Activity {
         });
     }
 
-    public static class Renderer {
+    public static class EnglishRenderer implements Renderer {
 
         private String[] letters = {
                 "I", "T", "L", "I", "S", "A", "S", "A", "M", "P", "M",
@@ -68,22 +68,26 @@ public class Qlock extends Activity {
             put("ELEVEN", Arrays.asList(82, 83, 84, 85, 86, 87));
             put("SEVEN", Arrays.asList(88, 89, 90, 91, 92));
             put("TWELVE", Arrays.asList(93, 94, 95, 96, 97, 98));
-            put("TEN", Arrays.asList(99, 100, 101));
+            put("TENH", Arrays.asList(99, 100, 101));
             put("OCLOCK", Arrays.asList(104, 105, 106, 107, 108, 109));
 
         }};
         private LocalDateTime now;
 
-        public Renderer(LocalDateTime now) {
+        public EnglishRenderer(LocalDateTime now) { //for (future) testing purposes
             this.now = now;
         }
 
-        public Renderer() {
+        public EnglishRenderer() {
             this.now = LocalDateTime.now();
         }
 
         public List<String> getLetters() {
             return Arrays.asList(letters);
+        }
+
+        public String getLetter(int position) {
+            return getLetters().get(position);
         }
 
         public boolean shouldShow(int position) {
@@ -145,7 +149,7 @@ public class Qlock extends Activity {
                 else if (hour == 7) return positions.get("SEVEN");
                 else if (hour == 8) return positions.get("EIGHT");
                 else if (hour == 9) return positions.get("NINE");
-                else if (hour == 10) return positions.get("TEN");
+                else if (hour == 10) return positions.get("TENH");
                 else if (hour == 11) return positions.get("ELEVEN");
                 else if (hour == 12) return positions.get("TWELVE");
             }
@@ -159,7 +163,7 @@ public class Qlock extends Activity {
             else if (hour == 6) return positions.get("SEVEN");
             else if (hour == 7) return positions.get("EIGHT");
             else if (hour == 8) return positions.get("NINE");
-            else if (hour == 9) return positions.get("TEN");
+            else if (hour == 9) return positions.get("TENH");
             else if (hour == 10) return positions.get("ELEVEN");
             else if (hour == 11) return positions.get("TWELVE");
             else if (hour == 12) return positions.get("ONE");
@@ -167,9 +171,6 @@ public class Qlock extends Activity {
             return new ArrayList<Integer>();
         }
 
-        public String getLetter(int position) {
-            return getLetters().get(position);
-        }
 
         private <T> List<T> union(List<List<T>> lists) {
             ArrayList<T> single = new ArrayList<T>();
