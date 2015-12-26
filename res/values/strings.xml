@@ -3,4 +3,6 @@
     <string name="app_name">qlock</string>
     <string name="pref_title">language</string>
     <string name="pref_default_language">EN</string>
+    <string name="pref_color">color</string>
+    <string name="pref_default_color">black</string>
 </resources>

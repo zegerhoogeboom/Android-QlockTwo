@@ -1,7 +1,6 @@
 package org.zegerhoogeboom.settings;
 
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import org.zegerhoogeboom.R;
 

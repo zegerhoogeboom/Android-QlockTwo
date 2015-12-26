@@ -6,5 +6,14 @@
             android:dialogTitle="@string/pref_title"
             android:entries="@array/pref_languages"
             android:entryValues="@array/pref_language_values"
-            android:defaultValue="@string/pref_default_language" />
+            android:defaultValue="@string/pref_default_language"/>
+
+    <ListPreference
+            android:key="@string/pref_color"
+            android:title="@string/pref_color"
+            android:dialogTitle="@string/pref_color"
+            android:entries="@array/pref_colors"
+            android:entryValues="@array/pref_color_values"
+            android:defaultValue="@string/pref_default_color"
+            />
 </PreferenceScreen>
