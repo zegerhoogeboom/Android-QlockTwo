@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class EnglishRenderer implements Renderer {
 
-    private String[] letters = {
+    private static String[] letters = {
             "I", "T", "L", "I", "S", "A", "S", "A", "M", "P", "M",
             "A", "C", "Q", "U", "A", "R", "T", "E", "R", "D", "C",
             "T", "W", "E", "N", "T", "Y", "F", "I", "V", "E", "X",
@@ -22,7 +22,7 @@ public class EnglishRenderer implements Renderer {
             "T", "E", "N", "S", "E", "O", "C", "L", "O", "C", "K"
     };
 
-    private Map<String, List<Integer>> positions = new HashMap<String, List<Integer>>() {{
+    private static Map<String, List<Integer>> positions = new HashMap<String, List<Integer>>() {{
         put("IT", Arrays.asList(0, 1));
         put("IS", Arrays.asList(3, 4));
         put("AM", Arrays.asList(7, 8));
@@ -83,7 +83,7 @@ public class EnglishRenderer implements Renderer {
     }
 
     private List<Integer> minuteIndexes() {
-        int minute = now.getMinuteOfHour();
+        int minute = LocalDateTime.now().getMinuteOfHour();
         if (minute == 0) return positions.get("OCLOCK");
         else if (minute >= 5 && minute < 10)
             return union(Arrays.asList(positions.get("FIVE"), positions.get("PAST")));
@@ -98,7 +98,7 @@ public class EnglishRenderer implements Renderer {
         else if (minute >= 30 && minute < 35)
             return union(Arrays.asList(positions.get("HALF"), positions.get("PAST")));
         else if (minute >= 35 && minute < 40)
-            return union(Arrays.asList(positions.get("TWENTY"), positions.get("FIVE"), positions.get("TO")));
+            return union(Arrays.asList(positions.get("TWENTYFIVE"), positions.get("TO")));
         else if (minute >= 40 && minute < 45)
             return union(Arrays.asList(positions.get("TWENTY"), positions.get("TO")));
         else if (minute >= 45 && minute < 50)
@@ -112,7 +112,7 @@ public class EnglishRenderer implements Renderer {
 
 
     private List<Integer> hourIndexes() {
-        int hour = now.getHourOfDay();
+        int hour = LocalDateTime.now().getHourOfDay();
         return union(Arrays.asList(hourIndexes(hour, now.getMinuteOfHour()), hourIndexes(hour - 12, now.getMinuteOfHour())));
     }
 
@@ -154,6 +154,7 @@ public class EnglishRenderer implements Renderer {
     private <T> List<T> union(List<List<T>> lists) {
         ArrayList<T> single = new ArrayList<T>();
         for (List<T> list : lists) {
+            if (list == null) continue;
             single.addAll(list);
         }
         return single;
