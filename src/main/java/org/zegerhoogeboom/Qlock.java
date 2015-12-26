@@ -52,24 +52,24 @@ public class Qlock extends Activity {
             put("A", Arrays.asList(11));
             put("QUARTER", Arrays.asList(13, 14, 15, 16, 17, 18, 19));
             put("TWENTY", Arrays.asList(22, 23, 24, 25, 26, 27));
-            put("TWENTYFIVE", Arrays.asList(22, 23, 24, 25, 26, 27,28, 29, 30, 31));
-            put("HALF", Arrays.asList(33,34,35,36));
-            put("TEN", Arrays.asList(38,39,40));
-            put("TO", Arrays.asList(42,43));
-            put("PAST", Arrays.asList(44,45,46,47));
-            put("NINE", Arrays.asList(51,52,53,54));
-            put("ONE", Arrays.asList(55,56,57));
-            put("SIX",Arrays.asList(58,59,60));
-            put("THREE",Arrays.asList(61,62,63,64,65));
-            put("FOUR",Arrays.asList(66,67,68,69));
-            put("FIVE2",Arrays.asList(70,71,72,73));
-            put("TWO", Arrays.asList(74,75,76));
-            put("EIGHT",Arrays.asList(77,78,79,80,81));
-            put("ELEVEN", Arrays.asList(82,83,84,85,86,87));
-            put("SEVEN", Arrays.asList(88,89,90,91,92));
-            put("TWELVE", Arrays.asList(93,94,95,96,97,98));
-            put("TEN", Arrays.asList(99,100,101));
-            put("OCLOCK", Arrays.asList(104,105,106,107,108,109));
+            put("TWENTYFIVE", Arrays.asList(22, 23, 24, 25, 26, 27, 28, 29, 30, 31));
+            put("HALF", Arrays.asList(33, 34, 35, 36));
+            put("TEN", Arrays.asList(38, 39, 40));
+            put("TO", Arrays.asList(42, 43));
+            put("PAST", Arrays.asList(44, 45, 46, 47));
+            put("NINE", Arrays.asList(51, 52, 53, 54));
+            put("ONE", Arrays.asList(55, 56, 57));
+            put("SIX", Arrays.asList(58, 59, 60));
+            put("THREE", Arrays.asList(61, 62, 63, 64, 65));
+            put("FOUR", Arrays.asList(66, 67, 68, 69));
+            put("FIVE2", Arrays.asList(70, 71, 72, 73));
+            put("TWO", Arrays.asList(74, 75, 76));
+            put("EIGHT", Arrays.asList(77, 78, 79, 80, 81));
+            put("ELEVEN", Arrays.asList(82, 83, 84, 85, 86, 87));
+            put("SEVEN", Arrays.asList(88, 89, 90, 91, 92));
+            put("TWELVE", Arrays.asList(93, 94, 95, 96, 97, 98));
+            put("TEN", Arrays.asList(99, 100, 101));
+            put("OCLOCK", Arrays.asList(104, 105, 106, 107, 108, 109));
 
         }};
         private LocalDateTime now;
@@ -91,11 +91,12 @@ public class Qlock extends Activity {
         }
 
         private List<Integer> positionsShouldShow() {
-            List<Integer> indexes = new ArrayList<Integer>();
-            indexes.addAll(positions.get("IT"));
-            indexes.addAll(positions.get("IS"));
-            indexes.addAll(minuteIndexes());
-            return indexes;
+            return union(Arrays.asList(
+                    positions.get("IT"),
+                    positions.get("IS"),
+                    minuteIndexes(),
+                    hourIndexes()
+            ));
         }
 
         private List<Integer> minuteIndexes() {
@@ -123,6 +124,46 @@ public class Qlock extends Activity {
                 return union(Arrays.asList(positions.get("TEN"), positions.get("TO")));
             else if (minute >= 55 && minute < 60)
                 return union(Arrays.asList(positions.get("FIVE"), positions.get("TO")));
+            return new ArrayList<Integer>();
+        }
+
+
+        private List<Integer> hourIndexes() {
+            int hour = now.getHourOfDay();
+            return union(Arrays.asList(hourIndexes(hour, now.getMinuteOfHour()), hourIndexes(hour - 12, now.getMinuteOfHour())));
+        }
+
+        private List<Integer> hourIndexes(int hour, int minute) {
+            if (minute <= 30) {
+                if (hour == 0) return positions.get("TWELVE");
+                else if (hour == 1) return positions.get("ONE");
+                else if (hour == 2) return positions.get("TWO");
+                else if (hour == 3) return positions.get("THREE");
+                else if (hour == 4) return positions.get("FOUR");
+                else if (hour == 5) return positions.get("FIVE");
+                else if (hour == 6) return positions.get("SIX");
+                else if (hour == 7) return positions.get("SEVEN");
+                else if (hour == 8) return positions.get("EIGHT");
+                else if (hour == 9) return positions.get("NINE");
+                else if (hour == 10) return positions.get("TEN");
+                else if (hour == 11) return positions.get("ELEVEN");
+                else if (hour == 12) return positions.get("TWELVE");
+            }
+
+            if (hour == 0) return positions.get("ONE");
+            else if (hour == 1) return positions.get("TWO");
+            else if (hour == 2) return positions.get("THREE");
+            else if (hour == 3) return positions.get("FOUR");
+            else if (hour == 4) return positions.get("FIVE");
+            else if (hour == 5) return positions.get("SIX");
+            else if (hour == 6) return positions.get("SEVEN");
+            else if (hour == 7) return positions.get("EIGHT");
+            else if (hour == 8) return positions.get("NINE");
+            else if (hour == 9) return positions.get("TEN");
+            else if (hour == 10) return positions.get("ELEVEN");
+            else if (hour == 11) return positions.get("TWELVE");
+            else if (hour == 12) return positions.get("ONE");
+
             return new ArrayList<Integer>();
         }
 
