@@ -32,6 +32,7 @@ public class EnglishRenderer implements Renderer {
         put("QUARTER", Arrays.asList(13, 14, 15, 16, 17, 18, 19));
         put("TWENTY", Arrays.asList(22, 23, 24, 25, 26, 27));
         put("TWENTYFIVE", Arrays.asList(22, 23, 24, 25, 26, 27, 28, 29, 30, 31));
+        put("FIVE", Arrays.asList(28, 29, 30, 31));
         put("HALF", Arrays.asList(33, 34, 35, 36));
         put("TEN", Arrays.asList(38, 39, 40));
         put("TO", Arrays.asList(42, 43));
@@ -41,7 +42,7 @@ public class EnglishRenderer implements Renderer {
         put("SIX", Arrays.asList(58, 59, 60));
         put("THREE", Arrays.asList(61, 62, 63, 64, 65));
         put("FOUR", Arrays.asList(66, 67, 68, 69));
-        put("FIVE2", Arrays.asList(70, 71, 72, 73));
+        put("FIVEH", Arrays.asList(70, 71, 72, 73));
         put("TWO", Arrays.asList(74, 75, 76));
         put("EIGHT", Arrays.asList(77, 78, 79, 80, 81));
         put("ELEVEN", Arrays.asList(82, 83, 84, 85, 86, 87));
@@ -123,7 +124,7 @@ public class EnglishRenderer implements Renderer {
             else if (hour == 2) return positions.get("TWO");
             else if (hour == 3) return positions.get("THREE");
             else if (hour == 4) return positions.get("FOUR");
-            else if (hour == 5) return positions.get("FIVE");
+            else if (hour == 5) return positions.get("FIVEH");
             else if (hour == 6) return positions.get("SIX");
             else if (hour == 7) return positions.get("SEVEN");
             else if (hour == 8) return positions.get("EIGHT");
@@ -137,7 +138,7 @@ public class EnglishRenderer implements Renderer {
         else if (hour == 1) return positions.get("TWO");
         else if (hour == 2) return positions.get("THREE");
         else if (hour == 3) return positions.get("FOUR");
-        else if (hour == 4) return positions.get("FIVE");
+        else if (hour == 4) return positions.get("FIVEH");
         else if (hour == 5) return positions.get("SIX");
         else if (hour == 6) return positions.get("SEVEN");
         else if (hour == 7) return positions.get("EIGHT");
