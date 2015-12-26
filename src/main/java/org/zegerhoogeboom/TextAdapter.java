@@ -42,16 +42,6 @@ public class TextAdapter extends BaseAdapter {
         int color = Color.DKGRAY;
         if (renderer.shouldShow(position)) color = Color.WHITE;
         tv.setTextColor(color);
-
-
- /*       final Handler handler = new Handler();
-        handler.postDelayed( new Runnable() {
-            public void run() {
-                notifyDataSetChanged();
-                handler.postDelayed( this, 60 * 100 );
-            }
-        }, 60 * 100);*/
-
         return tv;
     }
 

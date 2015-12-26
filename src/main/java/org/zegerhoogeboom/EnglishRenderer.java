@@ -27,7 +27,6 @@ public class EnglishRenderer implements Renderer {
         put("IS", Arrays.asList(3, 4));
         put("AM", Arrays.asList(7, 8));
         put("AM", Arrays.asList(9, 10));
-
         put("A", Arrays.asList(11));
         put("QUARTER", Arrays.asList(13, 14, 15, 16, 17, 18, 19));
         put("TWENTY", Arrays.asList(22, 23, 24, 25, 26, 27));
@@ -50,9 +49,9 @@ public class EnglishRenderer implements Renderer {
         put("TWELVE", Arrays.asList(93, 94, 95, 96, 97, 98));
         put("TENH", Arrays.asList(99, 100, 101));
         put("OCLOCK", Arrays.asList(104, 105, 106, 107, 108, 109));
-
     }};
     private LocalDateTime now;
+    private List<Integer> positionsShouldShow;
 
     public EnglishRenderer(LocalDateTime now) { //for (future) testing purposes
         this.now = now;
@@ -75,46 +74,49 @@ public class EnglishRenderer implements Renderer {
     }
 
     private List<Integer> positionsShouldShow() {
-        return union(Arrays.asList(
-                positions.get("IT"),
-                positions.get("IS"),
-                minuteIndexes(),
-                hourIndexes()
-        ));
+        if (positionsShouldShow == null) {
+            positionsShouldShow = concat(Arrays.asList(
+                    positions.get("IT"),
+                    positions.get("IS"),
+                    minuteIndexes(),
+                    hourIndexes()
+            ));
+        }
+        return positionsShouldShow;
     }
 
     private List<Integer> minuteIndexes() {
         int minute = LocalDateTime.now().getMinuteOfHour();
-        if (minute == 0) return positions.get("OCLOCK");
+        if (minute >= 0 && minute < 5) return positions.get("OCLOCK");
         else if (minute >= 5 && minute < 10)
-            return union(Arrays.asList(positions.get("FIVE"), positions.get("PAST")));
+            return concat(Arrays.asList(positions.get("FIVE"), positions.get("PAST")));
         else if (minute >= 10 && minute < 15)
-            return union(Arrays.asList(positions.get("TEN"), positions.get("PAST")));
+            return concat(Arrays.asList(positions.get("TEN"), positions.get("PAST")));
         else if (minute >= 15 && minute < 20)
-            return union(Arrays.asList(positions.get("A"), positions.get("QUARTER"), positions.get("PAST")));
+            return concat(Arrays.asList(positions.get("A"), positions.get("QUARTER"), positions.get("PAST")));
         else if (minute >= 20 && minute < 25)
-            return union(Arrays.asList(positions.get("TWENTY"), positions.get("PAST")));
+            return concat(Arrays.asList(positions.get("TWENTY"), positions.get("PAST")));
         else if (minute >= 25 && minute < 30)
-            return union(Arrays.asList(positions.get("TWENTYFIVE"), positions.get("PAST")));
+            return concat(Arrays.asList(positions.get("TWENTYFIVE"), positions.get("PAST")));
         else if (minute >= 30 && minute < 35)
-            return union(Arrays.asList(positions.get("HALF"), positions.get("PAST")));
+            return concat(Arrays.asList(positions.get("HALF"), positions.get("PAST")));
         else if (minute >= 35 && minute < 40)
-            return union(Arrays.asList(positions.get("TWENTYFIVE"), positions.get("TO")));
+            return concat(Arrays.asList(positions.get("TWENTYFIVE"), positions.get("TO")));
         else if (minute >= 40 && minute < 45)
-            return union(Arrays.asList(positions.get("TWENTY"), positions.get("TO")));
+            return concat(Arrays.asList(positions.get("TWENTY"), positions.get("TO")));
         else if (minute >= 45 && minute < 50)
-            return union(Arrays.asList(positions.get("A"), positions.get("QUARTER"), positions.get("TO")));
+            return concat(Arrays.asList(positions.get("A"), positions.get("QUARTER"), positions.get("TO")));
         else if (minute >= 50 && minute < 55)
-            return union(Arrays.asList(positions.get("TEN"), positions.get("TO")));
+            return concat(Arrays.asList(positions.get("TEN"), positions.get("TO")));
         else if (minute >= 55 && minute < 60)
-            return union(Arrays.asList(positions.get("FIVE"), positions.get("TO")));
+            return concat(Arrays.asList(positions.get("FIVE"), positions.get("TO")));
         return new ArrayList<Integer>();
     }
 
 
     private List<Integer> hourIndexes() {
         int hour = LocalDateTime.now().getHourOfDay();
-        return union(Arrays.asList(hourIndexes(hour, now.getMinuteOfHour()), hourIndexes(hour - 12, now.getMinuteOfHour())));
+        return concat(Arrays.asList(hourIndexes(hour, now.getMinuteOfHour()), hourIndexes(hour - 12, now.getMinuteOfHour())));
     }
 
     private List<Integer> hourIndexes(int hour, int minute) {
@@ -152,7 +154,7 @@ public class EnglishRenderer implements Renderer {
     }
 
 
-    private <T> List<T> union(List<List<T>> lists) {
+    private <T> List<T> concat(List<List<T>> lists) {
         ArrayList<T> single = new ArrayList<T>();
         for (List<T> list : lists) {
             if (list == null) continue;
