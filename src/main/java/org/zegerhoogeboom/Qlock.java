@@ -6,9 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.GridView;
+import org.zegerhoogeboom.settings.SettingsActivity;
+import org.zegerhoogeboom.settings.SettingsFactory;
 
 public class Qlock extends Activity {
 
@@ -20,12 +24,16 @@ public class Qlock extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); //remove notification bar
         setContentView(R.layout.main);
 
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         updateGrid();
     }
 
     private void updateGrid() {
+        SettingsFactory settingsFactory = new SettingsFactory(this);
+
         GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new TextAdapter(this, new EnglishRenderer()));
+        gridview.setBackgroundColor(settingsFactory.backgroundColor());
+        gridview.setAdapter(new TextAdapter(this, settingsFactory.renderer()));
     }
 
     public void onStart() {
@@ -45,5 +53,10 @@ public class Qlock extends Activity {
     public void onStop() {
         super.onStop();
         if (broadcastReceiver != null) unregisterReceiver(broadcastReceiver);
+    }
+
+    public void gotoSettings(View view) {
+        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        startActivity(intent);
     }
 }

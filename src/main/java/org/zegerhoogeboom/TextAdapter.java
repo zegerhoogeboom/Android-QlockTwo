@@ -1,9 +1,7 @@
 package org.zegerhoogeboom;
 
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.graphics.Color;
-import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;

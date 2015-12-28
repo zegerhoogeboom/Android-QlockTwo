@@ -14,7 +14,16 @@
               android:horizontalSpacing="10dp"
               android:stretchMode="columnWidth"
               android:gravity="center"
-              android:layout_centerInParent="true"
-            />
+              android:layout_centerHorizontal="true"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:id="@+id/button"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:onClick="gotoSettings"/>
 
 </RelativeLayout>

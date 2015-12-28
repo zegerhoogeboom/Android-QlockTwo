@@ -27,8 +27,7 @@ public class EnglishRenderer implements Renderer {
         put("IS", Arrays.asList(3, 4));
         put("AM", Arrays.asList(7, 8));
         put("AM", Arrays.asList(9, 10));
-        put("A", Arrays.asList(11));
-        put("QUARTER", Arrays.asList(13, 14, 15, 16, 17, 18, 19));
+        put("AQUARTER", Arrays.asList(11,13, 14, 15, 16, 17, 18, 19));
         put("TWENTY", Arrays.asList(22, 23, 24, 25, 26, 27));
         put("TWENTYFIVE", Arrays.asList(22, 23, 24, 25, 26, 27, 28, 29, 30, 31));
         put("FIVE", Arrays.asList(28, 29, 30, 31));
@@ -93,7 +92,7 @@ public class EnglishRenderer implements Renderer {
         else if (minute >= 10 && minute < 15)
             return concat(Arrays.asList(positions.get("TEN"), positions.get("PAST")));
         else if (minute >= 15 && minute < 20)
-            return concat(Arrays.asList(positions.get("A"), positions.get("QUARTER"), positions.get("PAST")));
+            return concat(Arrays.asList(positions.get("AQUARTER"), positions.get("PAST")));
         else if (minute >= 20 && minute < 25)
             return concat(Arrays.asList(positions.get("TWENTY"), positions.get("PAST")));
         else if (minute >= 25 && minute < 30)
@@ -105,7 +104,7 @@ public class EnglishRenderer implements Renderer {
         else if (minute >= 40 && minute < 45)
             return concat(Arrays.asList(positions.get("TWENTY"), positions.get("TO")));
         else if (minute >= 45 && minute < 50)
-            return concat(Arrays.asList(positions.get("A"), positions.get("QUARTER"), positions.get("TO")));
+            return concat(Arrays.asList(positions.get("AQUARTER"), positions.get("TO")));
         else if (minute >= 50 && minute < 55)
             return concat(Arrays.asList(positions.get("TEN"), positions.get("TO")));
         else if (minute >= 55 && minute < 60)
@@ -152,7 +151,6 @@ public class EnglishRenderer implements Renderer {
 
         return new ArrayList<Integer>();
     }
-
 
     private <T> List<T> concat(List<List<T>> lists) {
         ArrayList<T> single = new ArrayList<T>();
