@@ -12,22 +12,26 @@
         <item>Black</item>
         <item>Blue</item>
         <item>Red</item>
+        <item>Orange</item>
     </string-array>
     <string-array name="pref_color_values">
         <item>#000000</item>
-        <item>#076aff</item>
-        <item>#ff4736</item>
+        <item>#2196F3</item>
+        <item>#F44336</item>
+        <item>#FF9800</item>
     </string-array>
     <string-array name="pref_fonts">
         <item>Droid Sans</item>
         <item>Mono</item>
         <item>Droid Serif</item>
-        <item>Coneria</item>
+        <item>Planet Benson</item>
+        <item>Handwritten</item>
     </string-array>
     <string-array name="pref_font_values">
         <item>sans</item>
         <item>mono</item>
         <item>serif</item>
-        <item>coneria</item>
+        <item>planetbe</item>
+        <item>handwritten</item>
     </string-array>
 </resources>

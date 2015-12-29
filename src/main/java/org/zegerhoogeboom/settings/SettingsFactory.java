@@ -44,7 +44,8 @@ public class SettingsFactory {
         switch (font) {
             case "mono": return Typeface.MONOSPACE;
             case "serif": return Typeface.SANS_SERIF;
-            case "coneria": return Typeface.createFromAsset(context.getAssets(), "fonts/coneria.ttf");
+            case "planetbe": return Typeface.createFromAsset(context.getAssets(), "fonts/planetbe.ttf");
+            case "handwritten": return Typeface.createFromAsset(context.getAssets(), "fonts/handwritten.ttf");
             case "droid":
             default: return Typeface.DEFAULT;
         }
