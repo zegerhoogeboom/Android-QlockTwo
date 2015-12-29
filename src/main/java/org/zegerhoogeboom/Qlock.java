@@ -33,7 +33,7 @@ public class Qlock extends Activity {
 
         findViewById(R.id.outer).setBackgroundColor(settingsFactory.backgroundColor());
         GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new TextAdapter(this, settingsFactory));
+        gridview.setAdapter(new TextAdapter(settingsFactory));
     }
 
     public void onStart() {

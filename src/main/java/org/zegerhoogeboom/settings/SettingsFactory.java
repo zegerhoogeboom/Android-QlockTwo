@@ -18,6 +18,10 @@ public class SettingsFactory {
         this.context = context;
     }
 
+    public Context getContext() {
+        return context;
+    }
+
     public Renderer renderer()
     {
         String language = PreferenceManager.getDefaultSharedPreferences(context).getString("language", "EN");

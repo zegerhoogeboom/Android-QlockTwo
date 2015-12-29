@@ -1,8 +1,6 @@
 package org.zegerhoogeboom;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,12 +11,10 @@ import org.zegerhoogeboom.settings.SettingsFactory;
  * @author Zeger Hoogeboom
  */
 public class TextAdapter extends BaseAdapter {
-    private Context context;
     private SettingsFactory settingsFactory;
     private Renderer renderer;
 
-    public TextAdapter(Context context, SettingsFactory settingsFactory) {
-        this.context = context;
+    public TextAdapter(SettingsFactory settingsFactory) {
         this.settingsFactory = settingsFactory;
         this.renderer = settingsFactory.renderer();
     }
@@ -37,7 +33,7 @@ public class TextAdapter extends BaseAdapter {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView != null) return convertView;
-        TextView tv = new TextView(context);
+        TextView tv = new TextView(settingsFactory.getContext());
         tv.setText(renderer.getLetter(position));
         tv.setTextSize(20);
         tv.setTypeface(settingsFactory.font());
