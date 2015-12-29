@@ -16,4 +16,13 @@
             android:entryValues="@array/pref_color_values"
             android:defaultValue="@string/pref_default_color"
             />
+
+    <ListPreference
+            android:key="@string/pref_font"
+            android:title="@string/pref_font"
+            android:dialogTitle="@string/pref_font"
+            android:entries="@array/pref_fonts"
+            android:entryValues="@array/pref_font_values"
+            android:defaultValue="@string/pref_default_font"
+            />
 </PreferenceScreen>

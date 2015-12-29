@@ -5,4 +5,6 @@
     <string name="pref_default_language">EN</string>
     <string name="pref_color">color</string>
     <string name="pref_default_color">black</string>
+    <string name="pref_font">font</string>
+    <string name="pref_default_font">sans</string>
 </resources>

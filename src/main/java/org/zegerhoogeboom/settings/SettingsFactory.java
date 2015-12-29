@@ -2,6 +2,7 @@ package org.zegerhoogeboom.settings;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import org.zegerhoogeboom.EnglishRenderer;
 import org.zegerhoogeboom.Renderer;
@@ -31,5 +32,17 @@ public class SettingsFactory {
     {
         String color = PreferenceManager.getDefaultSharedPreferences(context).getString("color", "#000000");
         return Color.parseColor(color);
+    }
+
+    public Typeface font()
+    {
+        String font = PreferenceManager.getDefaultSharedPreferences(context).getString("font", "droid");
+        switch (font) {
+            case "mono": return Typeface.MONOSPACE;
+            case "serif": return Typeface.SANS_SERIF;
+            case "coneria": return Typeface.createFromAsset(context.getAssets(), "fonts/coneria.ttf");
+            case "droid":
+            default: return Typeface.DEFAULT;
+        }
     }
 }

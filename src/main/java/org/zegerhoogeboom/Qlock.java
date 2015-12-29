@@ -32,10 +32,8 @@ public class Qlock extends Activity {
         SettingsFactory settingsFactory = new SettingsFactory(this);
 
         findViewById(R.id.outer).setBackgroundColor(settingsFactory.backgroundColor());
-
         GridView gridview = (GridView) findViewById(R.id.gridview);
-//        gridview.setBackgroundColor(settingsFactory.backgroundColor());
-        gridview.setAdapter(new TextAdapter(this, settingsFactory.renderer()));
+        gridview.setAdapter(new TextAdapter(this, settingsFactory));
     }
 
     public void onStart() {
